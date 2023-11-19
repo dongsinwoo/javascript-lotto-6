@@ -5,6 +5,10 @@ class Lotto {
     this.#validate(numbers);
     this.#numbers = numbers;
   }
+  
+  #lottoOutput(){
+    return this.#numbers
+  }
 
   #validate(numbers) {
     if (numbers.length !== 6) {

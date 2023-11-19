@@ -42,6 +42,10 @@ class Output {
     sixWin (num){
         Console.print(LOTTO_MSG.sixWin + num + "개");
     }
+
+    lottoNumbers(numbers){
+        Console.print(numbers);
+    }
 }
 
 export {Output}

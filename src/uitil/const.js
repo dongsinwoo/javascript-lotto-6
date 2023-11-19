@@ -12,7 +12,9 @@ const LOTTO_MSG = {
 }
 
 const ERROR_MSG = {
-
+    buyErr : "[ERROR] 구매 금액을 다시 입력해주세요",
+    winningErr : "[ERROR] 당첨 번호를 올바르게 입력해주세요 (예: 1,2,3,4,5,6)",
+    bonusErr : "[ERROR] 보너스 번호를 올바르게 입력해주세요 (예: 숫자하나만 문자x)"
 }
 
 export {LOTTO_MSG, ERROR_MSG}
