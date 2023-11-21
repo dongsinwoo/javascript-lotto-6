@@ -1,13 +1,7 @@
-import { Random } from '@woowacourse/mission-utils';
+import { Console, Random } from '@woowacourse/mission-utils';
 
 class Lotto {
- #winningNumbers;
 
-  constructor(winningNumbers) {
-    this.#validate(numbers);
-    this.#winningNumbers = winningNumbers;
-  }
-  
   #winningNum(winningNumbers){
     return winningNumbers.split(",")
   }
@@ -19,7 +13,7 @@ class Lotto {
   }
 
   generateNumbers() {
-    return Random.pickUniqueNumbersInRange(1, 45, 6);
+    return Console.print(Random.pickUniqueNumbersInRange(1, 45, 6));
   }
   
   // TODO: 추가 기능 구현

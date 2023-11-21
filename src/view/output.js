@@ -1,5 +1,5 @@
-import { Console } from `@woowacourse/mission-utils`
-import { LOTTO_MSG } from "../uitil/const"
+import { Console } from '@woowacourse/mission-utils'
+import { LOTTO_MSG } from "../util/const.js"
 
 class Output {
 
