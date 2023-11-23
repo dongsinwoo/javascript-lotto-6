@@ -1,16 +1,14 @@
+import { LOTTO_MSG } from "../util/const.js";
 import thr from "../util/throw.js"
 import { Input } from "../view/input.js";
-import { Output } from "../view/output.js";
 import Lotto from "./Lotto.js";
 
 class User {
 
     async payInput(){
         const input = new Input();
-        const output = new Output();
-        output.buyMsg();
         while (true) { 
-            let userInput = await input.input();
+            let userInput = await input.input(LOTTO_MSG.buy);
             if (userInput % 1000 === 0 && userInput != 0) {
                 return userInput/1000
                 break;
@@ -23,22 +21,34 @@ class User {
 
     async winningInput(){
         const input = new Input();
-        const output = new Output();
         const lotto = new Lotto();
-        output.winningNum();
         while(true){
-            let userInput = await input.input();
-            if(userInput.includes(",")){
-                lotto.winningNum(userInput);
-                break;                
-            }else if(!(userInput.includes(","))){
+            let userInput = await input.input(LOTTO_MSG.winningNumber);
+            if(userInput.includes(",") && !(userInput.includes("."))){
+                const result = await lotto.winningNum(userInput);
+                if(result == 0){
+                    continue
+                }else if(result !== 0){
+                    return result;
+                }
+            }else if(!(userInput.includes(",")) || (userInput.includes("."))){
                 thr.winningErr(userInput);
             }
         }
-
     }
 
-
+    async bounsInput(winningNum){
+        const input = new Input();
+        while(true){
+            let userInput = await input.input(LOTTO_MSG.bonusNumber);
+            let validate = !isNaN(userInput) && !(userInput > 45 || userInput < 1) && !(userInput.includes(".")) && !(winningNum.includes(userInput));
+            if(validate){
+                return userInput;
+            }else{
+                thr.bonusErr(userInput);
+            }
+        }
+    }
 
 }
 

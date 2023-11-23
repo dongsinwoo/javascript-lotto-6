@@ -3,48 +3,37 @@ import { LOTTO_MSG } from "../util/const.js"
 
 class Output {
 
-    buyMsg (){
-        Console.print(LOTTO_MSG.buy);
-    }
-
     payMsg (num){
         Console.print(num + LOTTO_MSG.pay);
     }
 
-    winningNum (){
-        Console.print(LOTTO_MSG.winningNumber);
-    }
-
-    bonusNum (){
-        Console.print(LOTTO_MSG.bonusNumber);
-    }
-
-    winningStatus (){
+    #winningStatus (){
         Console.print(LOTTO_MSG.winningStatus);
     }
 
-    threeWin (num){
-        Console.print(LOTTO_MSG.threeWin + num + "개");
+    #insent(winningList, pay){
+        const three = winningList[3] * 5000
+        const four = winningList[4] * 50000
+        const five = winningList[5] * 1500000
+        const fiveBonus = winningList.five_bonus * 30000000
+        const six = winningList[6] * 200000000
+        Console.print(`${LOTTO_MSG.insent}${((three + four + five + fiveBonus + six) / (pay/10)).toFixed(2)}%`)
     }
 
-    fourWin (num){
-        Console.print(LOTTO_MSG.fourWin + num + "개");
-    }
+    winningOutput(winningList, pay){
+        const winningPrintMap = [
+            `${LOTTO_MSG.threeWin} ${winningList[3]}개`,
+            `${LOTTO_MSG.fourWin} ${winningList[4]}개`,
+            `${LOTTO_MSG.fiveWin} ${winningList[5]}개`,
+            `${LOTTO_MSG.fiveBonusWin} ${winningList.five_bonus}개`,
+            `${LOTTO_MSG.sixWin} ${winningList[6]}개`,
+        ]
+        this.#winningStatus();
+        for (const msg of winningPrintMap) {
+            Console.print(msg)
+        }
 
-    fiveWin (num){
-        Console.print(LOTTO_MSG.fiveWin + num + "개");
-    }
-
-    fiveBonusWin (num){
-        Console.print(LOTTO_MSG.fiveBonusWin + num + "개");
-    }
-
-    sixWin (num){
-        Console.print(LOTTO_MSG.sixWin + num + "개");
-    }
-
-    lottoNumbers(numbers){
-        Console.print(numbers);
+        this.#insent(winningList,pay)
     }
 }
 

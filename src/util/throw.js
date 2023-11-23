@@ -21,8 +21,13 @@ const thr = {
         }
     },
 
-    bonusErrErr:()=>{
-        throw Error(ERROR_MSG.bonusErr)
+    bonusErr:async(userInput)=>{
+        try{
+            throw Error(ERROR_MSG.bonusErr)
+        }catch(err){
+            Console.print(err.message);
+            await userInput;
+        }
     }
 
 }
