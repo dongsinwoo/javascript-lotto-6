@@ -1,9 +1,11 @@
-import { loadOptions } from '@babel/core';
 import Lotto from '../model/Lotto.js';
 import { User } from '../model/user.js';
 import { LOTTO, LOTTO_MSG } from '../util/const.js';
 import { Output } from '../view/output.js';
 import { Console } from "@woowacourse/mission-utils"
+
+
+
 
 class LottoMachine {
     #lottoList = [];
@@ -12,8 +14,9 @@ class LottoMachine {
         const user = new User();
         const lotto = new Lotto();
         const output = new Output();
-        const userStack = await user.payInput();
-        this.#pay = userStack;
+        const userInput = await user.payInput();
+        this.#pay = userInput;
+        const userStack = userInput/1000;
         output.payMsg(userStack);
 
         this.#lottoList = [];

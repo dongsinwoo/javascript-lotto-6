@@ -12,12 +12,14 @@ class Output {
     }
 
     #insent(winningList, pay){
+    
         const three = winningList[3] * 5000
         const four = winningList[4] * 50000
         const five = winningList[5] * 1500000
         const fiveBonus = winningList.five_bonus * 30000000
         const six = winningList[6] * 200000000
-        Console.print(`${LOTTO_MSG.insent}${((three + four + five + fiveBonus + six) / (pay/10)).toFixed(2)}%`)
+        const insent = ((((three + four + five + fiveBonus + six - pay) / pay ) * 100) + 100).toFixed(1);
+        Console.print(`${LOTTO_MSG.insent}${insent}%입니다.`)
     }
 
     winningOutput(winningList, pay){

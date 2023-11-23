@@ -10,8 +10,8 @@ class User {
         while (true) { 
             let userInput = await input.input(LOTTO_MSG.buy);
             if (userInput % 1000 === 0 && userInput != 0) {
-                return userInput/1000
-                break;
+                return userInput
+                
             } 
             else if(isNaN(userInput) || userInput == 0 || userInput % 1000 != 0){
                 thr.buyErr(userInput);

@@ -1,6 +1,6 @@
 import { Console } from "@woowacourse/mission-utils"
 import { ERROR_MSG } from "./const.js"
-import { Input } from "../view/input.js"
+
 
 const thr = {
     buyErr: async (userInput)=>{

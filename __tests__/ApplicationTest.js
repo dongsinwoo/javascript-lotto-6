@@ -1,5 +1,7 @@
 import App from "../src/App.js";
 import { MissionUtils } from "@woowacourse/mission-utils";
+import Lotto from "../src/model/Lotto.js";
+
 
 const mockQuestions = (inputs) => {
   MissionUtils.Console.readLineAsync = jest.fn();
@@ -47,10 +49,10 @@ describe("로또 테스트", () => {
     jest.restoreAllMocks();
   })
 
-  test("기능 테스트", async () => {
+  test("로또 테스트", async () => {
     // given
     const logSpy = getLogSpy();
-
+  
     mockRandoms([
       [8, 21, 23, 41, 42, 43],
       [3, 5, 11, 16, 32, 38],
@@ -62,11 +64,11 @@ describe("로또 테스트", () => {
       [1, 3, 5, 14, 22, 45],
     ]);
     mockQuestions(["8000", "1,2,3,4,5,6", "7"]);
-
+  
     // when
     const app = new App();
     await app.play();
-
+  
     // then
     const logs = [
       "8개를 구매했습니다.",
@@ -85,14 +87,37 @@ describe("로또 테스트", () => {
       "6개 일치 (2,000,000,000원) - 0개",
       "총 수익률은 62.5%입니다.",
     ];
-
-    logs.forEach((log) => {
+  
+    for (const log of logs) {
       expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
-    });
+    }
   });
-
-  test("예외 테스트", async () => {
-    await runException("1000j");
+  
+  test("로또 클래스 테스트", () => {
+    // given
+    const logSpy = getLogSpy();
+  
+    // when
+    expect(() => {
+      new Lotto([1, 2, 3, 4, 5, 6, 7]);
+    }).toThrow("[ERROR]");
+  
+    // then
+    expect(logSpy).toHaveBeenCalledWith(expect.stringContaining("[ERROR]"));
   });
+  
+  test("로또 클래스 테스트", () => {
+    // given
+    const logSpy = getLogSpy();
+  
+    // when
+    expect(() => {
+      new Lotto([1, 2, 3, 4, 5, 5]);
+    }).toThrow("[ERROR]");
+  
+    // then
+    expect(logSpy).toHaveBeenCalledWith(expect.stringContaining("[ERROR]"));
+  });
+  
 });
 

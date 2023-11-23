@@ -2,11 +2,19 @@ import { Console, Random } from '@woowacourse/mission-utils';
 import { ERROR_MSG,LOTTO_MSG } from '../util/const.js';
 
 class Lotto {
-  
+  #numbers = []
+
+  constructor(numbers=[]){
+    numbers.forEach(number => {
+      this.#numbers.push(number)
+    });
+  }
+
 
   async winningNum(userInput){
     const winningNumList =  userInput.split(",");
     const pass = this.#validateLength(winningNumList);
+    
     // console.log(pass)
     if(pass==LOTTO_MSG.success)
     {
@@ -14,6 +22,11 @@ class Lotto {
     }else if (pass == LOTTO_MSG.false ){
       return pass;
     }
+
+  }
+
+  lottoCheck(){
+    this.#validateLength(this.#numbers)
   }
 
   #validateLength(winningNumbers) {
@@ -65,6 +78,6 @@ class Lotto {
   
   // TODO: 추가 기능 구현
 }
-let oll = new Lotto();
-oll.winningNum("1,2,3,4,5,6");
+
+
 export default Lotto;
